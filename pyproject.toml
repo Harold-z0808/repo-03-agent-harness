@@ -1,0 +1,21 @@
+[project]
+name = "repo-03-agent-harness"
+version = "0.1.0"
+description = "Week 3 lesson repo for agent loops, harnesses, state, and memory."
+requires-python = ">=3.11"
+dependencies = [
+  "openai>=2.0.0",
+  "pydantic>=2.0.0",
+  "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "ipykernel>=6.0.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+

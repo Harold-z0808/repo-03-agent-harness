@@ -1,0 +1,32 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+*.pyc
+*.pyo
+*.pyd
+
+# OS/editor files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python build/test artifacts
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Local state/memory stores
+*.sqlite
+*.db
+*.jsonl
+memory_store/
+traces/
+

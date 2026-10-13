@@ -10,6 +10,7 @@ import os
 import shutil
 import subprocess
 import sys
+from importlib.util import find_spec
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -41,11 +42,11 @@ def display_path(path: str) -> str:
         return path
 
 
-load_dotenv()
+load_dotenv(Path(__file__).resolve().parent / ".env")
 
 major, minor = sys.version_info[:2]
 ver = f"{major}.{minor}.{sys.version_info.micro}"
-check((major, minor) in {(3, 11), (3, 12)}, "Python version", ver)
+check((major, minor) >= (3, 11), "Python version", ver)
 
 uv_path = shutil.which("uv") or str(Path.home() / ".local" / "bin" / "uv")
 if uv_path and Path(uv_path).exists():
@@ -68,10 +69,13 @@ openai_key = os.getenv("OPENAI_API_KEY")
 check(bool(openai_key), "OPENAI_API_KEY", "detected" if openai_key else "required for class demos")
 
 base_url = os.getenv("OPENAI_BASE_URL")
-if base_url is not None:
+if base_url and base_url.strip():
     parsed = urlparse(base_url)
     valid_base_url = parsed.scheme in {"http", "https"} and bool(parsed.netloc)
-    check(valid_base_url, "OPENAI_BASE_URL", base_url if valid_base_url else "must be full URL")
+    check(valid_base_url, "OPENAI_BASE_URL", "configured" if valid_base_url else "must be full URL")
+
+for module in ("openai", "agents", "pydantic", "ipykernel", "notebook", "langgraph"):
+    check(find_spec(module) is not None, module, "install with uv sync --locked --extra dev")
 
 print("\n" + "=" * 40)
 if fail_count == 0:

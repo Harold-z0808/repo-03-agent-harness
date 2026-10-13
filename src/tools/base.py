@@ -4,6 +4,8 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any
 
+from pydantic import validate_call
+
 
 JSONSchema = dict[str, Any]
 
@@ -20,7 +22,7 @@ class Tool:
     def run(self, **arguments: object) -> object:
         """Execute the underlying Python function."""
 
-        return self.function(**arguments)
+        return validate_call(self.function, config={"strict": True})(**arguments)
 
     def to_openai_tool(self) -> dict[str, object]:
         """Convert this tool into the Responses API tool format."""

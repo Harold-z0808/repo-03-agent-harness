@@ -1,6 +1,6 @@
 """Sketch of the same agent as a LangGraph state graph.
 
-This file is intentionally dependency-light. Install LangGraph separately before
+This file is intentionally dependency-light. LangGraph is installed with the dev extra; supply the missing node functions before
 turning this sketch into executable code.
 """
 

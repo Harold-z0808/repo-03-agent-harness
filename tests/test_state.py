@@ -16,7 +16,7 @@ def test_conversation_history_truncates_into_summary():
     history.add("assistant", "b" * 50)
 
     assert history.summary
-    assert history.total_characters() <= len(history.summary) + 50
+    assert history.total_characters() <= history.max_characters
 
 
 def test_memory_store_persists_and_searches(tmp_path):

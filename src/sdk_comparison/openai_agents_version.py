@@ -1,9 +1,8 @@
-"""Sketch of the same task with the OpenAI Agents SDK.
+"""Optional standalone reference. The runnable Jupyter example is in Notebook 05.
 
-This file is intentionally dependency-light. Install the Agents SDK separately
-before turning this sketch into executable code.
+openai-agents is installed by the normal project setup. Runner.run_sync is for
+plain scripts; use await Runner.run(...) inside Jupyter.
 """
-
 
 AGENTS_SDK_SKETCH = """
 from agents import Agent, Runner, function_tool

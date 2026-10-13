@@ -5,6 +5,7 @@ description = "Week 3 lesson repo for agent loops, harnesses, state, and memory.
 requires-python = ">=3.11"
 dependencies = [
   "openai>=2.0.0",
+  "openai-agents>=0.2.0",
   "pydantic>=2.0.0",
   "python-dotenv>=1.0.0",
 ]
@@ -13,9 +14,10 @@ dependencies = [
 dev = [
   "pytest>=8.0.0",
   "ipykernel>=6.0.0",
+  "langgraph>=1.0.0",
+  "notebook>=7.0.0",
 ]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
-
